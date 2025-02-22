@@ -1,0 +1,28 @@
+Comandos básicos - Terminal:
+
+>> ls: visualiza os arquivos no diretório
+>> cd: navega nos diretórios
+>> pwd: visualiza o caminho até o diretório	atual
+>> mkdir: cria uma pasta
+>> rmdir: remove uma pasta (apenas pastas vazia)
+>> rmdir -rf: remove uma pasta (vazia ou não) (!! CUIDADO !!)
+
+Comandos básicos - Git:
+
+>> git init: inicializa um novo repositório Git
+>> git clone <url>: clona um repositório remoto para o seu computador
+>> git status: mostra o estado das alterações no repositório
+>> git add <arquivo>: adiciona um arquivo específico para a área de stage
+>> git add .: adiciona todas as alterações para a área de stage
+>> git commit -m "mensagem": cria um commit com uma mensagem descritiva
+>> git push: envia as alterações para o repositório remoto
+>> git pull: puxa as alterações do repositório remoto para o local
+>> git branch: lista todas as branches no repositório
+>> git checkout <branch>: troca para uma branch específica
+>> git merge <branch>: mescla uma branch com a branch atual
+>> git log: exibe o histórico de commits
+>> git diff: mostra as diferenças entre os commits ou entre o stage e o último commit
+>> git reset <arquivo>: remove um arquivo da área de stage
+>> git rm <arquivo>: remove um arquivo do repositório e do sistema de arquivos
+>> git stash: salva temporariamente as alterações não commitadas
+>> git stash pop: aplica as alterações salvas no stash
