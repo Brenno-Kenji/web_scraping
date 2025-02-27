@@ -1,6 +1,7 @@
 # Importando módulos
 import requests
 import time
+import re
 
 from bs4 import BeautifulSoup
 
@@ -11,13 +12,18 @@ def get_html(url):
 def parse_html(response):
     soup = BeautifulSoup(response, 'html.parser')
     product_title = soup.find('h1', {'class': 'ui-pdp-title'}).text.strip()
-    text_price = soup.find('span', {'class': 'andes-money-amount ui-pdp-price__part andes-money-amount--cents-superscript andes-money-amount--compact'}).text.strip().replace(',', '')
     
+    text_price = soup.find('span', {'class': 'andes-money-amount ui-pdp-price__part andes-money-amount--cents-superscript andes-money-amount--compact'}).text.strip().replace(',', '')
+    number_price = re.findall(r'\d+', text_price)
+    total_price = float(number_price[0]) / 100
+
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
 
     return {
         'product_name': product_title,
-        'price': text_price,
+        'price_whole': number_price[0][:-2],
+        'price_fraction': number_price[0][2:],
+        'total_price': total_price,
         'timestamp': timestamp
     }
 
