@@ -14,6 +14,7 @@ def parse_html(response):
     price_whole = soup.find('span', {'class': 'a-price-whole'}).text.strip().replace(',', '')
     price_fraction = soup.find('span', {'class': 'a-price-fraction'}).text.strip().replace(',', '')
     total_price = float(price_whole + price_fraction) / 100
+    seller_name = soup.find('a', {'id': 'sellerProfileTriggerId'}).text.strip()
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
 
     return {
@@ -21,6 +22,7 @@ def parse_html(response):
         'price_whole': price_whole,
         'price_fraction': price_fraction,
         'total_price': total_price,
+        'seller_name': seller_name,
         'timestamp': timestamp
     }
 
