@@ -17,6 +17,10 @@ def parse_html(response):
     number_price = re.findall(r'\d+', text_price)
     total_price = float(number_price[0]) / 100
 
+    raw_seller_name = soup.find('span', {'class': 'ui-pdp-color--BLACK ui-pdp-size--LARGE ui-pdp-family--REGULAR ui-seller-data-header__title non-selectable'}).text.strip()
+    regex_seller_name = r'Vendido por (.*)'
+    seller_name = re.search(regex_seller_name, raw_seller_name).group(1).strip()
+
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
 
     return {
@@ -24,6 +28,7 @@ def parse_html(response):
         'price_whole': number_price[0][:-2],
         'price_fraction': number_price[0][2:],
         'total_price': total_price,
+        'seller_name': seller_name,
         'timestamp': timestamp
     }
 
