@@ -4,7 +4,7 @@ import re
 from web_scraping import *
 
 # Classe para realizar o Web Scraping no site do Mercado Livre
-class MercadoLivre(WebScraping):
+class WebScrapingMercadoLivre(WebScraping):
     def extract_product_name(self) -> list:
         '''
         Método para extração do nome do produto

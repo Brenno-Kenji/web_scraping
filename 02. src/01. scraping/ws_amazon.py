@@ -1,7 +1,8 @@
+# Importando módulos
 from web_scraping import *
 
 # Classe para realizar o Web Scraping no site da Amazon
-class Amazon(WebScraping):
+class WebScrapingAmazon(WebScraping):
     def extract_product_name(self) -> list:
         '''
         Método para extração do nome do produto
@@ -14,7 +15,9 @@ class Amazon(WebScraping):
         '''
         price_whole = self.get_soup().find('span', {'class': 'a-price-whole'}).text.strip().replace(',', '')
         price_fraction = self.get_soup().find('span', {'class': 'a-price-fraction'}).text.strip().replace(',', '')
+
         price_total = float(price_whole + price_fraction) / 100
+        
         return [price_whole, price_fraction, price_total]
 
     def extract_seller_name(self) -> list:
