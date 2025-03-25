@@ -1,7 +1,7 @@
 # Importando módulos
 import re
 
-from web_scraping import *
+from scraping.web_scraping import *
 
 # Classe para realizar o Web Scraping no site do Mercado Livre
 class WebScrapingMercadoLivre(WebScraping):

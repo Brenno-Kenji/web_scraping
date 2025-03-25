@@ -1,5 +1,5 @@
 # Importando módulos
-from web_scraping import *
+from scraping.web_scraping import *
 
 # Classe para realizar o Web Scraping no site da Amazon
 class WebScrapingAmazon(WebScraping):

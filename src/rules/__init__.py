@@ -1,1 +1,1 @@
-from product_url import products
+from rules.product_url import products
