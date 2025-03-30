@@ -18,11 +18,11 @@ class WebScrapingMercadoLivre(WebScraping):
         price_text = self.get_soup().find('span', {'class': 'andes-money-amount ui-pdp-price__part andes-money-amount--cents-superscript andes-money-amount--compact'}).text.strip().replace('.', '')
         price_number = re.findall(r'\d+', price_text)
 
-        price_whole = int(price_number[0])
-        price_fraction = int(price_number[1]) if len(price_number) > 1 else 0
-        price_total = float((price_whole + price_fraction) / 100)
+        price_whole = price_number[0]
+        price_fraction = price_number[1] if len(price_number) > 1 else 0
+        price_total = float((price_whole + price_fraction)) / 100 if float(price_fraction) > 0 else float(price_whole)
         
-        return [price_whole, price_fraction, price_total]
+        return [float(price_whole), float(price_fraction), price_total]
 
     def extract_seller_name(self) -> str:
         '''

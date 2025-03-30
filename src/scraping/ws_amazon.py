@@ -13,12 +13,12 @@ class WebScrapingAmazon(WebScraping):
         '''
         Método para extração dos preços do produto
         '''
-        price_whole = self.get_soup().find('span', {'class': 'a-price-whole'}).text.strip().replace(',', '')
-        price_fraction = self.get_soup().find('span', {'class': 'a-price-fraction'}).text.strip().replace(',', '')
+        price_whole = self.get_soup().find('span', {'class': 'a-price-whole'}).text.strip().replace(',', '').replace('.', '')
+        price_fraction = self.get_soup().find('span', {'class': 'a-price-fraction'}).text.strip().replace(',', '').replace('.', '')
 
-        price_total = float(price_whole + price_fraction) / 100
+        price_total = float((price_whole + price_fraction)) / 100 if float(price_fraction) > 0 else float(price_whole)
         
-        return [price_whole, price_fraction, price_total]
+        return [float(price_whole), float(price_fraction), price_total]
 
     def extract_seller_name(self) -> str:
         '''
