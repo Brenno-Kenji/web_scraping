@@ -5,11 +5,11 @@ from scraping.web_scraping import *
 
 # Classe para realizar o Web Scraping no site do Mercado Livre
 class WebScrapingMercadoLivre(WebScraping):
-    def extract_product_name(self) -> list:
+    def extract_product_name(self) -> str:
         '''
         Método para extração do nome do produto
         '''
-        return [self.get_soup().find('h1', {'class': 'ui-pdp-title'}).text.strip()]
+        return self.get_soup().find('h1', {'class': 'ui-pdp-title'}).text.strip()
 
     def extract_prices(self) -> list:
         '''
@@ -24,7 +24,7 @@ class WebScrapingMercadoLivre(WebScraping):
         
         return [price_whole, price_fraction, price_total]
 
-    def extract_seller_name(self) -> list:
+    def extract_seller_name(self) -> str:
         '''
         Método para extração do nome do vendedor
         '''
@@ -32,4 +32,4 @@ class WebScrapingMercadoLivre(WebScraping):
         regex_seller_name = r'Vendido por (.*)'
         seller_name = re.search(regex_seller_name, raw_seller_name).group(1).strip()
         
-        return [seller_name]
+        return seller_name

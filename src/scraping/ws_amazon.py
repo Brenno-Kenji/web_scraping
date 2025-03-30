@@ -3,11 +3,11 @@ from scraping.web_scraping import *
 
 # Classe para realizar o Web Scraping no site da Amazon
 class WebScrapingAmazon(WebScraping):
-    def extract_product_name(self) -> list:
+    def extract_product_name(self) -> str:
         '''
         Método para extração do nome do produto
         '''
-        return [self.get_soup().find('span', {'id': 'productTitle'}).text.strip()]
+        return self.get_soup().find('span', {'id': 'productTitle'}).text.strip()
 
     def extract_prices(self) -> list:
         '''
@@ -20,8 +20,8 @@ class WebScrapingAmazon(WebScraping):
         
         return [price_whole, price_fraction, price_total]
 
-    def extract_seller_name(self) -> list:
+    def extract_seller_name(self) -> str:
         '''
         Método para extração do nome do vendedor
         '''
-        return [self.get_soup().find('a', {'id': 'sellerProfileTriggerId'}).text.strip()]
+        return self.get_soup().find('a', {'id': 'sellerProfileTriggerId'}).text.strip()
