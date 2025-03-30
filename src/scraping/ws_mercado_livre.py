@@ -15,12 +15,12 @@ class WebScrapingMercadoLivre(WebScraping):
         '''
         Método para extração dos preços do produto
         '''
-        price_text = self.get_soup().find('span', {'class': 'andes-money-amount ui-pdp-price__part andes-money-amount--cents-superscript andes-money-amount--compact'}).text.strip().replace(',', '')
+        price_text = self.get_soup().find('span', {'class': 'andes-money-amount ui-pdp-price__part andes-money-amount--cents-superscript andes-money-amount--compact'}).text.strip().replace('.', '')
         price_number = re.findall(r'\d+', price_text)
 
-        price_whole = int(price_number[0][:-2])
-        price_fraction = int(price_number[0][2:])
-        price_total = float(price_number[0]) / 100
+        price_whole = int(price_number[0])
+        price_fraction = int(price_number[1]) if len(price_number) > 1 else 0
+        price_total = float((price_whole + price_fraction) / 100)
         
         return [price_whole, price_fraction, price_total]
 
