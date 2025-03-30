@@ -1,0 +1,2 @@
+from scraping.ws_amazon import WebScrapingAmazon
+from scraping.ws_mercado_livre import WebScrapingMercadoLivre
