@@ -24,4 +24,6 @@ class WebScrapingAmazon(WebScraping):
         '''
         Método para extração do nome do vendedor
         '''
-        return self.get_soup().find('a', {'id': 'sellerProfileTriggerId'}).text.strip()
+        bs_seller_name = self.get_soup().find('a', {'id': 'sellerProfileTriggerId'})
+        
+        return bs_seller_name.text.strip() if bs_seller_name != None else 'Amazon.com.br'

@@ -28,8 +28,8 @@ class WebScrapingMercadoLivre(WebScraping):
         '''
         Método para extração do nome do vendedor
         '''
-        raw_seller_name = self.get_soup().find('span', {'class': 'ui-pdp-color--BLACK ui-pdp-size--LARGE ui-pdp-family--REGULAR ui-seller-data-header__title non-selectable'}).text.strip()
-        regex_seller_name = r'Vendido por (.*)'
+        raw_seller_name = self.get_soup().find('button', {'class': 'ui-pdp-seller__link-trigger-button non-selectable'}).text.strip()
+        regex_seller_name = r'Vendido por(.*| .*)'
         seller_name = re.search(regex_seller_name, raw_seller_name).group(1).strip()
         
         return seller_name

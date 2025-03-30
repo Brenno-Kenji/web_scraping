@@ -68,7 +68,7 @@ class WebScraping(ABC):
             'price_whole': self.extract_prices()[0],
             'price_fraction': self.extract_prices()[1],
             'total_price': self.extract_prices()[2],
-            'seller_name': self.extract_prices(),
+            'seller_name': self.extract_seller_name(),
             'timestamp': self.extract_timestamp()
         }
         return self.__data
